@@ -1,0 +1,281 @@
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary-color: #2ecc71;
+    --secondary-color: #27ae60;
+    --text-color: #333;
+    --bg-color: #f4f4f4;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    position: relative;
+    overflow-x: hidden;
+}
+
+.decor-left, .decor-right {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: -1;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.decor-left {
+    left: 0;
+    background: linear-gradient(to right, var(--primary-color), transparent),
+                url('https://www.transparenttextures.com/patterns/leaf.png');
+}
+
+.decor-right {
+    right: 0;
+    background: linear-gradient(to left, var(--primary-color), transparent),
+                url('https://www.transparenttextures.com/patterns/leaf.png');
+}
+
+@media (max-width: 1400px) {
+    .decor-left, .decor-right {
+        width: 50px;
+        opacity: 0.05;
+    }
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    padding: 100px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+nav {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #d1ffd6;
+}
+
+main {
+    padding: 40px 0;
+}
+
+section {
+    padding-top: 80px; /* Отступ для корректного скролла из-за липкого меню */
+    margin-top: -80px;
+    margin-bottom: 60px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: var(--secondary-color);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.meal-plan {
+    margin-top: 40px;
+    background: var(--white);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.meal-plan h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--secondary-color);
+}
+
+.meal-plan .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.meal-card {
+    background: #f9f9f9;
+    padding: 0;
+    border-radius: 8px;
+    border-top: 4px solid var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.meal-card summary {
+    padding: 25px;
+    list-style: none;
+    outline: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meal-card summary::after {
+    content: '▼';
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    transition: transform 0.3s;
+}
+
+.meal-card[open] summary::after {
+    transform: rotate(180deg);
+}
+
+.meal-card summary::-webkit-details-marker {
+    display: none;
+}
+
+.meal-card h4 {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.meal-card[open] {
+    background: var(--white);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    margin: 10px 0;
+}
+
+.details-content {
+    padding: 0 30px 30px 30px;
+    animation: fadeIn 0.5s ease;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.details-content ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.details-content li {
+    margin-bottom: 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.meal-card p {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.note {
+    margin-top: 20px;
+    font-style: italic;
+    text-align: center;
+    color: #666;
+}
+
+#habits ul {
+    list-style: none;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#habits ul li {
+    background: var(--white);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-left: 5px solid var(--primary-color);
+    border-radius: 5px;
+}
+
+footer {
+    background: #333;
+    color: var(--white);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin: 5px 0;
+    }
+}
